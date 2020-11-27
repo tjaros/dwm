@@ -77,11 +77,11 @@ static const Layout layouts[] = {
 #define STACKKEYS(MOD,ACTION) \
 	{ MOD, XK_j,     ACTION##stack, {.i = INC(+1) } }, \
 	{ MOD, XK_k,     ACTION##stack, {.i = INC(-1) } }, \
-	{ MOD, XK_grave, ACTION##stack, {.i = PREVSEL } }, \
-	{ MOD, XK_q,     ACTION##stack, {.i = 0 } }, \
-	{ MOD, XK_a,     ACTION##stack, {.i = 1 } }, \
-	{ MOD, XK_z,     ACTION##stack, {.i = 2 } }, \
-	{ MOD, XK_x,     ACTION##stack, {.i = -1 } },
+	{ MOD, XK_v,     ACTION##stack, {.i = 0 } }, 
+/*	{ MOD, XK_grave, ACTION##stack, {.i = PREVSEL } }, \ */
+/*	{ MOD, XK_a,     ACTION##stack, {.i = 1 } }, \	     */
+/*	{ MOD, XK_z,     ACTION##stack, {.i = 2 } }, \       */
+/*	{ MOD, XK_x,     ACTION##stack, {.i = -1 } },        */
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -93,16 +93,17 @@ static const char *termcmd[]  = { "alacritty", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,            spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return,       spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_b,            togglebar,      {0} },
+	{ MODKEY,                       XK_space,            spawn,          {.v = dmenucmd } },
+      //{ MODKEY,                       XK_space,            spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_Return,       spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_i,            togglebar,      {0} },
 	STACKKEYS(MODKEY,                                focus)
 	STACKKEYS(MODKEY|ShiftMask,                      push)
-	{ MODKEY,                       XK_i,            incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,            incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,            setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,            setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_Return,       zoom,           {0} },
+	{ MODKEY,                       XK_plus,         incnmaster,     {.i = +1 } },
+	{ MODKEY,                       XK_minus,        incnmaster,     {.i = -1 } },
+	{ MODKEY,                       XK_h,            setmfact,       {.f = -0.01} },
+	{ MODKEY,                       XK_l,            setmfact,       {.f = +0.01} },
+      //{ MODKEY,                       XK_Return,       zoom,           {0} },     the hell is this?
 	{ MODKEY|Mod4Mask,              XK_u,            incrgaps,       {.i = +1 } },
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_u,            incrgaps,       {.i = -1 } },
 	{ MODKEY|Mod4Mask,              XK_i,            incrigaps,      {.i = +1 } },
@@ -119,17 +120,14 @@ static Key keys[] = {
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_9,            incrovgaps,     {.i = -1 } },
 	{ MODKEY|Mod4Mask,              XK_0,            togglegaps,     {0} },
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_0,            defaultgaps,    {0} },
-	{ MODKEY,                       XK_Tab,          view,           {0} },
-	{ MODKEY|ShiftMask,             XK_c,            killclient,     {0} },
+    	{ MODKEY,                       XK_Tab,          view,           {0} }, 
+	{ MODKEY|ShiftMask,             XK_q,            killclient,     {0} },
 	{ MODKEY,                       XK_t,            setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,            setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,            setlayout,      {.v = &layouts[2]} },
-	{ MODKEY|ControlMask,		XK_comma,        cyclelayout,    {.i = -1 } },
-	{ MODKEY|ControlMask,           XK_period,       cyclelayout,    {.i = +1 } },
-	{ MODKEY,                       XK_space,        setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_space,        togglefloating, {0} },
+	{ MODKEY,        		XK_BackSpace,    cyclelayout,    {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_BackSpace,    cyclelayout,    {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_f,            togglefloating, {0} },
 	{ MODKEY,                       XK_s,            togglesticky,   {0} },
-	{ MODKEY|ShiftMask,             XK_f,            togglefullscr,  {0} },
+	{ MODKEY,                       XK_f,            togglefullscr,  {0} },
 	{ MODKEY,                       XK_0,            view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,            tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,        focusmon,       {.i = -1 } },
@@ -147,7 +145,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_BackSpace,    quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_e,            quit,           {0} },
 };
 
 /* button definitions */
