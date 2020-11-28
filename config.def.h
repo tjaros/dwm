@@ -20,7 +20,7 @@ static const char col_fg1[] = "#81a1c1";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_fg,    col_bg1,    col_bg1 },
-	[SchemeSel]  = { col_fg1,   col_bg,     col_bg },
+	[SchemeSel]  = { col_fg1,   col_bg1,     col_bg },
 };
 
 /* tagging */
@@ -31,11 +31,11 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
+	/* class            instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
+	{ "Gimp",           NULL,     NULL,           0,         1,          0,           0,        -1 },
+	{ "Firefox",        NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
 	{ "Alacritty",      NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+	{ NULL,             NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
 /* layout(s) */
@@ -87,28 +87,30 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run",
+/*static const char *dmenucmd[] = { "dmenu_run",
                                   "-m", dmenumon, 
 				  "-fn", dmenufont, 
 				  "-nb", col_bg1, 
 				  "-nf", col_fg, 
 				  "-sb", col_bg, 
 				  "-sf", col_fg1,
-				  NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
+				  NULL };*/
+static const char *rofi_druncmd[] = { "rofi", "-show", "drun", NULL };
+static const char *rofi_runcmd[]  = { "rofi", "-show", "run",  NULL };
+static const char *termcmd[]      =  { "alacritty", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_space,            spawn,          {.v = dmenucmd } },
-      //{ MODKEY,                       XK_space,            spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_space,        spawn,          {.v = rofi_druncmd } },
+        { MODKEY|ShiftMask,             XK_space,        spawn,          {.v = rofi_runcmd } },
 	{ MODKEY,                       XK_Return,       spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_i,            togglebar,      {0} },
 	STACKKEYS(MODKEY,                                focus)
 	STACKKEYS(MODKEY|ShiftMask,                      push)
-	{ MODKEY,                       XK_plus,         incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_minus,        incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,            setmfact,       {.f = -0.01} },
-	{ MODKEY,                       XK_l,            setmfact,       {.f = +0.01} },
+	{ MODKEY,                       XK_o,            incnmaster,     {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_o,        incnmaster,     {.i = -1 } },
+	{ MODKEY,                       XK_h,            setmfact,       {.f = -0.05} },
+	{ MODKEY,                       XK_l,            setmfact,       {.f = +0.05} },
       //{ MODKEY,                       XK_Return,       zoom,           {0} },     the hell is this?
 	{ MODKEY|Mod4Mask,              XK_u,            incrgaps,       {.i = +1 } },
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_u,            incrgaps,       {.i = -1 } },
