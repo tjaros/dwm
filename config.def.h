@@ -11,7 +11,7 @@ static const unsigned int gappov    = 15;       /* vert outer gap between window
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
+static const char *fonts[]          = { "mononoki Nerd Font:pixelsize=14:antialias=true:autohint=true" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_bg1[] = "#3b4252";
 static const char col_bg[] =  "#4c566a";
@@ -46,6 +46,7 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 #define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
 #include "vanitygaps.c"
 #include "shiftview.c"
+#include <X11/XF86keysym.h>
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -154,6 +155,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_e,            quit,           {0} },
+	{0, XF86XK_AudioRaiseVolume,    spawn, SHCMD("pamixer -i 5")},
+	{0, XF86XK_AudioLowerVolume,    spawn, SHCMD("pamixer -d 5")},
+	{0, XF86XK_MonBrightnessUp,     spawn, SHCMD("xbacklight -inc 5")},
+	{0, XF86XK_MonBrightnessDown,   spawn, SHCMD("xbacklight -dec 5")}
 };
 
 /* button definitions */
