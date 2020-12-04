@@ -1,5 +1,5 @@
-/* See LICENSE file for copyright and license details. */
 
+/* See LICENSE file for copyright and license details. */
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -113,6 +113,22 @@ static Key keys[] = {
 	{ MODKEY,                       XK_h,            setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,            setmfact,       {.f = +0.05} },
       //{ MODKEY,                       XK_Return,       zoom,           {0} },     the hell is this?
+	{ MODKEY,                       XK_Down,   moveresize,     {.v = "0x 25y 0w 0h" } },
+	{ MODKEY,                       XK_Up,     moveresize,     {.v = "0x -25y 0w 0h" } },
+	{ MODKEY,                       XK_Right,  moveresize,     {.v = "25x 0y 0w 0h" } },
+	{ MODKEY,                       XK_Left,   moveresize,     {.v = "-25x 0y 0w 0h" } },
+	{ MODKEY|ShiftMask,             XK_Down,   moveresize,     {.v = "0x 0y 0w 25h" } },
+	{ MODKEY|ShiftMask,             XK_Up,     moveresize,     {.v = "0x 0y 0w -25h" } },
+	{ MODKEY|ShiftMask,             XK_Right,  moveresize,     {.v = "0x 0y 25w 0h" } },
+	{ MODKEY|ShiftMask,             XK_Left,   moveresize,     {.v = "0x 0y -25w 0h" } },
+	{ MODKEY|ControlMask,           XK_Up,     moveresizeedge, {.v = "t"} },
+	{ MODKEY|ControlMask,           XK_Down,   moveresizeedge, {.v = "b"} },
+	{ MODKEY|ControlMask,           XK_Left,   moveresizeedge, {.v = "l"} },
+	{ MODKEY|ControlMask,           XK_Right,  moveresizeedge, {.v = "r"} },
+	{ MODKEY|ControlMask|ShiftMask, XK_Up,     moveresizeedge, {.v = "T"} },
+	{ MODKEY|ControlMask|ShiftMask, XK_Down,   moveresizeedge, {.v = "B"} },
+	{ MODKEY|ControlMask|ShiftMask, XK_Left,   moveresizeedge, {.v = "L"} },
+	{ MODKEY|ControlMask|ShiftMask, XK_Right,  moveresizeedge, {.v = "R"} },
 	{ MODKEY|Mod4Mask,              XK_u,            incrgaps,       {.i = +1 } },
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_u,            incrgaps,       {.i = -1 } },
 	{ MODKEY|Mod4Mask,              XK_i,            incrigaps,      {.i = +1 } },
@@ -158,7 +174,9 @@ static Key keys[] = {
 	{0, XF86XK_AudioRaiseVolume,    spawn, SHCMD("pamixer -i 5")},
 	{0, XF86XK_AudioLowerVolume,    spawn, SHCMD("pamixer -d 5")},
 	{0, XF86XK_MonBrightnessUp,     spawn, SHCMD("xbacklight -inc 5")},
-	{0, XF86XK_MonBrightnessDown,   spawn, SHCMD("xbacklight -dec 5")}
+	{0, XF86XK_MonBrightnessDown,   spawn, SHCMD("xbacklight -dec 5")},
+	{0,	      XK_Print,                   spawn, SHCMD("maim >    ~/pictures/screenshots/$(date +'%d-%m-%Y-%T')")},
+	{ShiftMask, XK_Print,                     spawn, SHCMD("maim -s > ~/pictures/screenshots/$(date +'%d-%m-%Y-%T')")},
 };
 
 /* button definitions */
