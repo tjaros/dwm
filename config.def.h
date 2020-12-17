@@ -33,13 +33,12 @@ static const Rule rules[] = {
 	 */
 	/* class            instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
 	{ "Gimp",           NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "Firefox",        NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
-	{ "Alacritty",      NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ "St",             NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,             NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.50; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 
@@ -98,7 +97,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 				  NULL };*/
 static const char *rofi_druncmd[] = { "rofi", "-show", "drun", NULL };
 static const char *rofi_runcmd[]  = { "rofi", "-show", "run",  NULL };
-static const char *termcmd[]      =  { "alacritty", NULL };
+static const char *termcmd[]      =  { "st", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -175,8 +174,8 @@ static Key keys[] = {
 	{0, XF86XK_AudioLowerVolume,    spawn, SHCMD("pamixer -d 5")},
 	{0, XF86XK_MonBrightnessUp,     spawn, SHCMD("xbacklight -inc 5")},
 	{0, XF86XK_MonBrightnessDown,   spawn, SHCMD("xbacklight -dec 5")},
-	{0,	      XK_Print,                   spawn, SHCMD("maim >    ~/pictures/screenshots/$(date +'%d-%m-%Y-%T')")},
-	{ShiftMask, XK_Print,                     spawn, SHCMD("maim -s > ~/pictures/screenshots/$(date +'%d-%m-%Y-%T')")},
+	{0,	    XK_Print,           spawn, SHCMD("maim >    ~/pictures/screenshots/$(date +'%d-%m-%Y-%T')")},
+	{ShiftMask, XK_Print,           spawn, SHCMD("maim -s > ~/pictures/screenshots/$(date +'%d-%m-%Y-%T')")},
 };
 
 /* button definitions */
