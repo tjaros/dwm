@@ -1,7 +1,7 @@
 
 /* See LICENSE file for copyright and license details. */
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const unsigned int gappih    = 15;       /* horiz inner gap between windows */
@@ -13,14 +13,15 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "mononoki Nerd Font:pixelsize=14:antialias=true:autohint=true" };
 static const char dmenufont[]       = "monospace:size=10";
-static const char col_bg1[] = "#3b4252";
+static const char col_bg1[] = "#2e3440"; //3b4252
 static const char col_bg[] =  "#4c566a";
+static const char border1[] =  "#3b4252";
 static const char col_fg[] =  "#eceff4";
 static const char col_fg1[] = "#81a1c1";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_fg,    col_bg1,    col_bg1 },
-	[SchemeSel]  = { col_fg1,   col_bg1,     col_bg },
+	[SchemeNorm] = { col_fg,    col_bg1,   border1   },
+	[SchemeSel]  = { col_fg1,   col_bg1,   col_fg1  },
 };
 
 /* tagging */
@@ -174,8 +175,8 @@ static Key keys[] = {
 	{0, XF86XK_AudioLowerVolume,    spawn, SHCMD("pamixer -d 5")},
 	{0, XF86XK_MonBrightnessUp,     spawn, SHCMD("xbacklight -inc 5")},
 	{0, XF86XK_MonBrightnessDown,   spawn, SHCMD("xbacklight -dec 5")},
-	{0,	    XK_Print,           spawn, SHCMD("maim >    ~/pictures/screenshots/$(date +'%d-%m-%Y-%T')")},
-	{ShiftMask, XK_Print,           spawn, SHCMD("maim -s > ~/pictures/screenshots/$(date +'%d-%m-%Y-%T')")},
+	{0,	    XK_Print,           spawn, SHCMD("SCR=~/pictures/screenshots/$(date +'%d-%m-%Y-%T').png;maim > $SCR && cat $SCR | xclip -selection clipboard -t image/png -i")},
+	{ShiftMask, XK_Print,           spawn, SHCMD("SCR=~/pictures/screenshots/$(date +'%d-%m-%Y-%T').png;maim -s > $SCR && cat $SCR | xclip -selection clipboard -t image/png -i")},
 };
 
 /* button definitions */
