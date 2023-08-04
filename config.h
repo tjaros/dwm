@@ -11,7 +11,7 @@ static       int smartgaps          = 0;        /* 1 means no outer gap when the
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 //static const char *fonts[]          = { "mononoki Nerd Font:pixelsize=14:antialias=true:autohint=true" };
-static const char *fonts[]          = { "PragmataPro Mono Liga:pixelsize=14:antialias=true:autohint=true" };
+static const char *fonts[]          = { "PragmataProMonoLiga Nerd Font:pixelsize=14:antialias=true:autohint=true" };
 static const char dmenufont[]       = "monospace:size=10";
 //static const char col_bg1[] = "#2e3440"; //3b4252
 //static const char col_bg[] =  "#4c566a";
@@ -40,6 +40,8 @@ static const Rule rules[] = {
 	/* class            instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
 	{ "Gimp",           NULL,     NULL,           0,         1,          0,           0,        -1 },
 	{ "St",             NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ "Steam",             NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ "Xephyr",         NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,             NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
@@ -106,7 +108,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *rofi_druncmd[] = { "rofi", "-show", "drun", NULL };
 static const char *rofi_runcmd[]  = { "rofi", "-show", "run",  NULL };
 static const char *termcmd[]      =  { "st", NULL };
-static const char *editorcmd[]      =  { "emacs", NULL };
+static const char *editorcmd[]      =  { "emacs" , NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -138,8 +140,8 @@ static Key keys[] = {
 	{ MODKEY|ControlMask|ShiftMask, XK_Down,   moveresizeedge, {.v = "B"} },
 	{ MODKEY|ControlMask|ShiftMask, XK_Left,   moveresizeedge, {.v = "L"} },
 	{ MODKEY|ControlMask|ShiftMask, XK_Right,  moveresizeedge, {.v = "R"} },
-	{ MODKEY|Mod4Mask,              XK_u,            incrgaps,       {.i = +1 } },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_u,            incrgaps,       {.i = -1 } },
+	{ MODKEY,              XK_a,            incrgaps,       {.i = +1 } },
+	{ MODKEY|ShiftMask,    XK_a,            incrgaps,       {.i = -1 } },
 	{ MODKEY|Mod4Mask,              XK_i,            incrigaps,      {.i = +1 } },
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_i,            incrigaps,      {.i = -1 } },
 	{ MODKEY|Mod4Mask,              XK_o,            incrogaps,      {.i = +1 } },
