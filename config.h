@@ -11,7 +11,7 @@ static       int smartgaps          = 0;        /* 1 means no outer gap when the
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 //static const char *fonts[]          = { "mononoki Nerd Font:pixelsize=14:antialias=true:autohint=true" };
-static const char *fonts[]          = { "PragmataProMonoLiga Nerd Font:pixelsize=14:antialias=true:autohint=true" };
+static const char *fonts[]          = { "Hack:style=Regular:pixelsize=14:antialias=true:autohint=true" };
 static const char dmenufont[]       = "monospace:size=10";
 //static const char col_bg1[] = "#2e3440"; //3b4252
 //static const char col_bg[] =  "#4c566a";
