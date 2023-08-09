@@ -107,8 +107,8 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 				  NULL };*/
 static const char *rofi_druncmd[] = { "rofi", "-show", "drun", NULL };
 static const char *rofi_runcmd[]  = { "rofi", "-show", "run",  NULL };
-static const char *termcmd[]      =  { "st", NULL };
-static const char *editorcmd[]      =  { "emacs" , NULL};
+static const char *termcmd[]      =  { "kitty", NULL };
+static const char *editorcmd[]      =  { "emacsclient", "-c" , NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
