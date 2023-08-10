@@ -652,7 +652,7 @@ clientmessage(XEvent *e)
 {
 	XWindowAttributes wa;
 	XSetWindowAttributes swa;
-        XAnyEvent *ev = e->xany;
+        XAnyEvent *ev = &e->xany;
 	XClientMessageEvent *cme = &e->xclient;
 	Client *c = wintoclient(cme->window);
 	unsigned int i;
