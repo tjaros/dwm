@@ -652,6 +652,7 @@ clientmessage(XEvent *e)
 {
 	XWindowAttributes wa;
 	XSetWindowAttributes swa;
+        XAnyEvent *ev = e->xany;
 	XClientMessageEvent *cme = &e->xclient;
 	Client *c = wintoclient(cme->window);
 	unsigned int i;
@@ -719,7 +720,7 @@ clientmessage(XEvent *e)
 			focus(c);
 			restack(selmon);
 		}
-	} else if ((c = wintosystrayicon(e->window))) {
+	} else if ((c = wintosystrayicon(ev->window))) {
 		removesystrayicon(c);
 		resizebarwin(selmon);
 		updatesystray();
