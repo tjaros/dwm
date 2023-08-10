@@ -719,7 +719,7 @@ clientmessage(XEvent *e)
 			focus(c);
 			restack(selmon);
 		}
-	} else if ((c = wintosystrayicon(ev->window))) {
+	} else if ((c = wintosystrayicon(e->window))) {
 		removesystrayicon(c);
 		resizebarwin(selmon);
 		updatesystray();
@@ -755,8 +755,8 @@ configurenotify(XEvent *e)
 
 	/* TODO: updategeom handling sucks, needs to be simplified */
 	if (ev->window == root) {
-		dirty =  tw != ev->width || sh != ev->height);
-	 tw = ev->width;
+                dirty =  (tw != ev->width) || (sh != ev->height);
+	        tw = ev->width;
 		sh = ev->height;
 		if (updategeom() || dirty) {
 			drw_resize(drw, tw, bh);
@@ -939,7 +939,7 @@ drawbar(Monitor *m)
 	Client *c;
 
 	if(showsystray && m == systraytomon(m) && !systrayonleft)
-	    stw = getsystraywidth()
+            stw = getsystraywidth();
 
 	/* draw status first so it can be overdrawn by tags later */
 	if (m == selmon) { /* status is only drawn on selected monitor */
